@@ -4,7 +4,7 @@
   "author": "yibn2008 <yibn2008@qq.com>",
   "license": "CC0-1.0",
   "repository": "metalabdesign/css-split-webpack-plugin",
-  "main": "dist/index.js",
+  "main": "lib/index.js",
   "keywords": [
     "webpack-plugin",
     "postcss"

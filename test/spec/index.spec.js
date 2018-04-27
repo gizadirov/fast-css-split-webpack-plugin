@@ -71,7 +71,7 @@ const webpack = (options, inst, extra) => {
 }
 
 describe('CSSSplitWebpackPlugin', () => {
-  it.only('should split files when needed', () =>
+  it('should split files when needed', () =>
     webpack({size: 3, imports: true}).then(({stats}) => {
       expect(stats).to.not.be.null
       expect(stats.assetsByChunkName).to.have.property('main')
@@ -120,16 +120,6 @@ describe('CSSSplitWebpackPlugin', () => {
         .to.contain('styles-split.css')
     })
   })
-  it('should handle source maps properly', () =>
-    webpack({size: 3}, less).then(({files}) => {
-      expect(files).to.have.property('styles-1.css.map')
-      const map = JSON.parse(files['styles-1.css.map'].toString('utf8'))
-      expect(map).to.have.property('version', 3)
-      expect(map).to.have.property('sources')
-        .to.have.property(0)
-        .to.match(/index.less$/)
-    })
-  )
   it('should handle cases when there are no source maps', () =>
     webpack({size: 3}, less, {devtool: null}).then(({files}) => {
       expect(files).to.not.have.property('styles-1.css.map')

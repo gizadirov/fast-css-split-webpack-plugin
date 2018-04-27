@@ -1,28 +1,28 @@
-# css-split-webpack-plugin
+# fast-css-split-webpack-plugin
 
 Split your CSS for stupid browsers using [webpack] and [postcss].
 
-![build status](http://img.shields.io/travis/metalabdesign/css-split-webpack-plugin/master.svg?style=flat)
-![coverage](http://img.shields.io/coveralls/metalabdesign/css-split-webpack-plugin/master.svg?style=flat)
-![license](http://img.shields.io/npm/l/css-split-webpack-plugin.svg?style=flat)
-![version](http://img.shields.io/npm/v/css-split-webpack-plugin.svg?style=flat)
-![downloads](http://img.shields.io/npm/dm/css-split-webpack-plugin.svg?style=flat)
-
 Using [webpack] to generate your CSS is fun for some definitions of fun. Unfortunately the fun stops when you have a large app and need IE9 support because IE9 will ignore any more than ~4000 selectors in your lovely generated CSS bundle. The solution is to split your CSS bundle smartly into multiple smaller CSS files. Now _you can_.™ Supports source-maps.
+
+## why faster?
+
+The original css-split-webpack-plugin use [postcss](https://github.com/postcss/postcss) to split css, when css file size becomes larger, postcss will be very slow. fast-css-split-webpack plugin use [css-split](https://github.com/yibn2008/css-split) instead of postcss, provide 10 times faster performance of css spliting.
+
+Performance benchmark: https://github.com/yibn2008/css-split#performance
 
 ## Installation
 
 ```sh
-npm install --save css-split-webpack-plugin
+npm install --save fast-css-split-webpack-plugin
 ```
 
 ## Usage
 
-Simply add an instance of `CSSSplitWebpackPlugin` to your list of plugins in your webpack configuration file _after_ `ExtractTextPlugin`. That's it!
+Simply add an instance of `FastCSSSplitWebpackPlugin` to your list of plugins in your webpack configuration file _after_ `ExtractTextPlugin`. That's it!
 
 ```javascript
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var CSSSplitWebpackPlugin = require('../').default;
+var FastCSSSplitWebpackPlugin = require('../');
 
 module.exports = {
   entry: './index.js',
@@ -40,7 +40,7 @@ module.exports = {
   },
   plugins: [
     new ExtractTextPlugin('styles.css'),
-    new CSSSplitWebpackPlugin({size: 4000}),
+    new FastCSSSplitWebpackPlugin({size: 4000}),
   ],
 };
 ```

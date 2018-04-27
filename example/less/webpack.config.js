@@ -1,5 +1,5 @@
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var CSSSplitWebpackPlugin = require('../../').default;
+var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var FastCSSSplitWebpackPlugin = require('../../')
 
 module.exports = {
   entry: './index.js',
@@ -7,19 +7,19 @@ module.exports = {
   output: {
     path: __dirname + '/dist',
     publicPath: '/foo',
-    filename: 'bundle.js',
+    filename: 'bundle.js'
   },
   module: {
     loaders: [{
       test: /\.less$/,
       loader: ExtractTextPlugin.extract(
         'css?-url&-autoprefixer&sourceMap!less?sourceMap'
-      ),
-    }],
+      )
+    }]
   },
   devtool: 'source-map',
   plugins: [
-    new ExtractTextPlugin("styles.css"),
-    new CSSSplitWebpackPlugin({size: 3}),
-  ],
-};
+    new ExtractTextPlugin('styles.css'),
+    new FastCSSSplitWebpackPlugin({size: 3})
+  ]
+}

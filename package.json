@@ -1,6 +1,6 @@
 {
   "name": "fast-css-split-webpack-plugin",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "author": "yibn2008 <yibn2008@qq.com>",
   "license": "CC0-1.0",
   "repository": "metalabdesign/css-split-webpack-plugin",
